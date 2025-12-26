@@ -33,14 +33,6 @@ SLM-Trainer solves these problems by enabling you to:
 pip install slm-trainer
 ```
 
-Or install from source:
-
-```bash
-git clone https://github.com/yourusername/SLM-Trainer
-cd SLM-Trainer
-pip install -e .
-```
-
 ## Quick Start
 
 ```python
@@ -68,7 +60,7 @@ That's it! You now have a custom language model trained on your data.
 | Model Size | Parameters | Context Length | CPU Training | GPU Training | Use Case |
 |-----------|------------|----------------|--------------|--------------|----------|
 | Tiny | 10-30M | 512 tokens | ✅ | ✅ | Quick prototyping, limited resources |
-| Small | 50-125M | 1024 tokens | ✅ | ✅ | General purpose, balanced performance |
+| Small | 50-125M | 1024 tokens | ✅(slow) | ✅ | General purpose, balanced performance |
 | Medium | 200-300M | 2048 tokens | ❌ | ✅ | Best quality, requires GPU |
 
 ## API Reference
@@ -234,32 +226,6 @@ trainer.train("data.txt", epochs=10)
 - **GPU**: 8GB+ VRAM (required)
 - **Training Time**: ~8-16 hours for 10M tokens on GPU
 
-## Examples
-
-See the `examples/` directory for more examples:
-
-- `basic_training.py`: Simple training example
-- `custom_config.py`: Advanced configuration options
-- `inference.py`: Text generation examples
-
-## Project Structure
-
-```
-SLM-Trainer/
-├── slm_trainer/                # Main package
-│   ├── config/                 # Model and training configurations
-│   ├── model/                  # GPT model architecture
-│   ├── tokenizer/              # SentencePiece tokenizer
-│   ├── training/               # Training pipeline
-│   ├── utils/                  # Utilities
-│   └── trainer.py              # Main SLMTrainer API
-├── examples/                   # Example scripts
-├── tests/                      # Unit tests
-├── setup.py                    # Package setup
-├── pyproject.toml              # Modern packaging
-├── requirements.txt            # Dependencies
-└── README.md                   # This file
-```
 
 ## Technical Details
 
@@ -288,42 +254,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Citation
 
-If you use SLM-Trainer in your research or project, please cite:
-
-```bibtex
-@software{slm_trainer,
-  title = {SLM-Trainer: A Python Library for Training Small Language Models},
-  author = {Your Name},
-  year = {2024},
-  url = {https://github.com/yourusername/SLM-Trainer}
-}
-```
 
 ## Acknowledgments
 
-- Inspired by [minGPT](https://github.com/karpathy/minGPT) by Andrej Karpathy
 - Built with [PyTorch](https://pytorch.org/)
 - Tokenization powered by [SentencePiece](https://github.com/google/sentencepiece)
-
-## Support
-
-For questions, issues, or feature requests, please open an issue on [GitHub](https://github.com/yourusername/SLM-Trainer/issues).
-
-### To deploy on PYPI
-
-```
-# Clean old builds
- Remove-Item -Recurse -Force build, dist, *.egg-info -ErrorAction SilentlyContinue
-
-# Build the package
- python -m build
-
-# Validate package
- python -m twine check dist\*
-
-# Upload to REAL PyPI (production)
- python -m twine upload dist\*
-
-```

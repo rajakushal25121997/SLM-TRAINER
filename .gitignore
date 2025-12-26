@@ -105,3 +105,4 @@ wheels/
 temp_*.txt
 sample_data.txt
 *.tmp
+/local_dir
